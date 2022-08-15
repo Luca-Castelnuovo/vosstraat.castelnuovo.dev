@@ -1,41 +1,17 @@
 <?php
 
 require '../vendor/autoload.php';
-
-use Dotenv\Dotenv;
-use CQ\Crypto\Helpers\Token;
-use GuzzleHttp\Client;
-
-$dotenv = Dotenv::createImmutable(__DIR__ . "/../");
-$dotenv->load();
+require '../includes/env.php';
+require '../includes/auth.php';
 
 $success = null;
 
 if (isset($_GET['open'])) {
-    try {
-        $token = Token::encrypt(
-            key: $_ENV['TOKEN_KEY'],
-            data: [
-                'name' => $_SERVER['Remote-Name'] ?? $_SERVER['Remote-User'] ?? 'unknown',
-                'exp' => time() + 10,
-            ]
-        );
-
-        $guzzle = new Client(['timeout'  => 2.0]);
-
-        $response = $guzzle->get('https://vosstraat.external.castelnuovo.xyz', [
-            'headers' => [
-                'Authorization' => $token
-            ],
-        ]);
-
-        $success = true;
-    } catch (\Throwable $th) {
-        $success = false;
-    }
+    $success = send_request();
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

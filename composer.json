@@ -3,7 +3,7 @@
   "require": {
     "vlucas/phpdotenv": "^5.4",
     "guzzlehttp/guzzle": "^7.0",
-    "cubequence/crypto": "^1.5"
+    "firebase/php-jwt": "^6.3"
   },
   "authors": [
     {
