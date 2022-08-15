@@ -23,8 +23,7 @@ if (isset($_GET['open'])) {
 
         $guzzle = new Client(['timeout'  => 2.0]);
 
-        // TODO: change to https://vosstraat.external.castelnuovo.xyz
-        $response = $guzzle->get('https://webhook.site/c7b7bd01-d9bc-4263-8ddd-e5ed30237a39', [
+        $response = $guzzle->get('https://vosstraat.external.castelnuovo.xyz', [
             'headers' => [
                 'Authorization' => $token
             ],
