@@ -1,0 +1,14 @@
+{
+  "name": "luca-castelnuovo/vosstraat",
+  "require": {
+    "vlucas/phpdotenv": "^5.4",
+    "guzzlehttp/guzzle": "^7.0",
+    "cubequence/crypto": "^1.5"
+  },
+  "authors": [
+    {
+      "name": "Luca Castelnuovo",
+      "email": "luca@castelnuovo.xyz"
+    }
+  ]
+}
