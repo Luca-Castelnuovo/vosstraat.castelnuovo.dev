@@ -9,19 +9,15 @@ function send_request()
         $token = JWT::encode(
             [
                 'sub' => $_SERVER['Remote-Name'] ?? $_SERVER['Remote-User'] ?? 'unknown',
-                'nbf' => time() - 5,
-                'exp' => time() + 5
+                'nbf' => time() - 10,
+                'exp' => time() + 10
             ],
             $_ENV['JWT_KEY'],
             'HS256'
         );
 
-        echo $token;
-        exit;
-
-        $guzzle = new Client(['timeout'  => 2.0]);
-
-        $guzzle->get('https://vosstraat.external.castelnuovo.xyz', [
+        $guzzle = new Client(['timeout'  => 5]);
+        $guzzle->get('https://vosstraat.castelnuovo.xyz', [
             'headers' => [
                 'Authorization' => $token
             ],
