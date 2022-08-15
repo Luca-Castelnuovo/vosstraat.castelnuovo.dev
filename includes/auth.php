@@ -16,7 +16,7 @@ function send_request()
             'HS256'
         );
 
-        $guzzle = new Client(['timeout'  => 5]);
+        $guzzle = new Client(['timeout'  => 10]);
         $guzzle->get('https://vosstraat.castelnuovo.xyz', [
             'headers' => [
                 'Authorization' => $token
