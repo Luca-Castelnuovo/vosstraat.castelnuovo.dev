@@ -15,6 +15,7 @@ services:
       traefik.enable: true
       traefik.http.routers.vosstraat.entrypoints: https
       traefik.http.services.vosstraat.loadbalancer.server.port: 80
+      com.centurylinklabs.watchtower.monitor-only: true
     environment:
       JWT_KEY: ${JWT_KEY:?error}
     volumes:
