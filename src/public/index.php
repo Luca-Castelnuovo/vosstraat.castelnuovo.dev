@@ -27,6 +27,12 @@ if (isset($_GET['open'])) {
     <div class="container">
         <p class="title">Vosstraat 2, 6511VH</p>
 
+        <a href="/?open" type="button" class="btn btn-primary">Open de deur</a>
+
+        <?php if ($success !== null) : ?>
+            <br><br>
+        <?php endif ?>
+
         <?php if ($success === true) : ?>
             <a href="#" type="button" class="btn btn-success">Success, deur open</a>
         <?php endif ?>
@@ -34,12 +40,6 @@ if (isset($_GET['open'])) {
         <?php if ($success === false) : ?>
             <a href="#" type="button" class="btn btn-error">Error, probeer opnieuw</a>
         <?php endif; ?>
-
-        <?php if ($success !== null) : ?>
-            <br><br>
-        <?php endif ?>
-
-        <a href="/?open" type="button" class="btn btn-primary">Open de deur</a>
     </div>
 </body>
 
