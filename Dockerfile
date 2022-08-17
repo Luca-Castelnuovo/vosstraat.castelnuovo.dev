@@ -1,8 +1,23 @@
 FROM composer as composer
-COPY ./src /app
-RUN composer install --no-dev --no-interaction --no-plugins --no-scripts --optimize-autoloader
+WORKDIR /app
+
+COPY src/composer.json composer.json
+COPY src/composer.lock composer.lock
+
+RUN composer install \
+    --no-dev \
+    --no-interaction \
+    --no-plugins \
+    --no-scripts \
+    --optimize-autoloader
+
+COPY ./src .
+RUN composer dump-autoload
 
 FROM php:8.1-apache
-RUN a2enmod rewrite
 WORKDIR /var/www/root
+
 COPY --from=composer /app/vendor /var/www/root/vendor
+COPY ./src .
+
+RUN a2enmod rewrite

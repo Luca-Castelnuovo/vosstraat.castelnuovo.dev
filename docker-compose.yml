@@ -18,7 +18,6 @@ services:
     environment:
       JWT_KEY: ${JWT_KEY:?error}
     volumes:
-      - ./src:/var/www/root
       - ./apache:/etc/apache2/sites-enabled
 
 networks:
