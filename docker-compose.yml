@@ -20,8 +20,6 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./apache:/etc/apache2/sites-enabled
-    ports:
-      - 81:80
 
 networks:
   traefik-proxy:
