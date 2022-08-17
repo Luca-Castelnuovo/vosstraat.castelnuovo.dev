@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  vosstraat:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: vosstraat
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - traefik-proxy
+    labels:
+      traefik.enable: true
+      traefik.http.routers.vosstraat.entrypoints: https
+      traefik.http.services.vosstraat.loadbalancer.server.port: 80
+    environment:
+      JWT_KEY: ${JWT_KEY:?error}
+    volumes:
+      - ./src:/var/www/html
+      - ./apache:/etc/apache2/sites-enabled
+    ports:
+      - 81:80
+
+networks:
+  traefik-proxy:
+    driver: bridge
+    external: true
