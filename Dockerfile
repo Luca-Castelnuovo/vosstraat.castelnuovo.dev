@@ -1,8 +1,8 @@
+FROM composer as composer
+COPY ./src /app
+RUN composer install --ignore-platform-reqs --no-scripts
+
 FROM php:8.1-apache
-
 RUN a2enmod rewrite
-
-WORKDIR /var/www/html
-
-COPY --from=composer:2.0 /usr/bin/composer /usr/local/bin/composer
-RUN composer install --no-interaction --no-dev --optimize-autoloader
+WORKDIR /var/www/root
+COPY --from=composer /app/vendor /var/www/root/vendor
