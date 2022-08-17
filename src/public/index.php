@@ -1,7 +1,6 @@
 <?php
 
 require '../vendor/autoload.php';
-require '../includes/env.php';
 require '../includes/auth.php';
 
 $success = null;
