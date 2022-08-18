@@ -35,11 +35,11 @@ if (isset($_GET['open'])) {
         <?php endif ?>
 
         <?php if ($success === true) : ?>
-            <a href="#" type="button" class="btn btn-success">Success, deur open</a>
+            <a href="#" type="button" class="btn btn-success">Success</a>
         <?php endif ?>
 
         <?php if ($success === false) : ?>
-            <a href="#" type="button" class="btn btn-error">Error, probeer opnieuw</a>
+            <a href="#" type="button" class="btn btn-error">Probeer opnieuw</a>
         <?php endif; ?>
     </div>
 </body>
