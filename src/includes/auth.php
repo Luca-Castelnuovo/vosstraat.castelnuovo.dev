@@ -6,9 +6,13 @@ use GuzzleHttp\Client;
 function send_request()
 {
     try {
+        if (!str_contains($_SERVER['HTTP_REMOTE_GROUPS'], 'vosstraat')) {
+            return false;
+        }
+
         $token = JWT::encode(
             [
-                'sub' => $_SERVER['Remote-Name'] ?? $_SERVER['Remote-User'] ?? 'unknown',
+                'sub' => $_SERVER['HTTP_REMOTE_USER'] ?? $_SERVER['HTTP_REMOTE_NAME'] ?? 'unknown',
                 'nbf' => time() - 10,
                 'exp' => time() + 10
             ],
