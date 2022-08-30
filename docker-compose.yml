@@ -1,3 +1,5 @@
+# Only for development purposes
+
 version: "3"
 
 services:
@@ -5,23 +7,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: vosstraat
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    networks:
-      - traefik-proxy
-    labels:
-      traefik.enable: true
-      traefik.http.routers.vosstraat.entrypoints: https
-      traefik.http.services.vosstraat.loadbalancer.server.port: 80
-      com.centurylinklabs.watchtower.enable: false
     environment:
       JWT_KEY: ${JWT_KEY:?error}
-    volumes:
-      - ./apache:/etc/apache2/sites-enabled
-
-networks:
-  traefik-proxy:
-    driver: bridge
-    external: true
+    ports:
+      - "80:80"
