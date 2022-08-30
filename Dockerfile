@@ -1,8 +1,6 @@
-FROM composer as composer
-WORKDIR /app
+FROM composer as build
 
-COPY src/composer.json composer.json
-COPY src/composer.lock composer.lock
+COPY ./src /app
 
 RUN composer install \
     --no-dev \
@@ -10,14 +8,11 @@ RUN composer install \
     --no-plugins \
     --no-scripts \
     --optimize-autoloader
-
-COPY ./src .
 RUN composer dump-autoload
 
 FROM php:8.1-apache
-WORKDIR /var/www/root
 
-COPY --from=composer /app/vendor /var/www/root/vendor
-COPY ./src .
+COPY --from=build /app /var/www/html
+COPY ./apache.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN a2enmod rewrite
