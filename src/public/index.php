@@ -21,7 +21,7 @@ if (isset($_GET['open'])) {
     <link href="/manifest.webmanifest" rel="manifest">
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png">
-    <title>Vosstraat Deur</title>
+    <title>Vosstraat Deur - test</title>
 </head>
 
 <body>
